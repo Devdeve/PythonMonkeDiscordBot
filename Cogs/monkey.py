@@ -18,7 +18,7 @@ class postMonkeyCog(commands.Cog, name="Monke cog"):
     def __init__(self, bot:commands.Bot):
         self.bot = bot
 
-    @commands.hybrid_command(name = "monkey",aliases = ["monki", "monke", "ape", "gorilla", "monkei", "chimp"], description = "mmm monke")
+    @commands.hybrid_command(name = "monkey",aliases = ["monki", "monke", "ape", "gorilla", "monkei", "chimp", "bonobo", "monkee", "monk", "baboon", "rasmus"], description = "mmm monke")
     async def monkey(self, ctx):
         imageNumber = random.randint(0, len(monkeyImagesList))
         ChimpEvent = random.randint(0,200)
