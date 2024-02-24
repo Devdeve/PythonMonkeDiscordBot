@@ -6,7 +6,7 @@ class postFoogCog(commands.Cog, name="Foog cog"):
         self.bot = bot
 
     @commands.hybrid_command(name = "foog", aliases = ["2st"], description = "lord foog the 2st")
-    async def food(self, ctx):
+    async def foog(self, ctx):
         file = discord.File(f"./foog/foog.mp4")
         await ctx.send(file=file)
 
