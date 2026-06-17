@@ -1,5 +1,5 @@
-import discord
 from discord.ext import commands
+from Cogs.media import send_fixed_media
 
 class FlatFuckFridayCog(commands.Cog, name="Flat Fuck Friday Cog"):
     def __init__(self, bot:commands.Bot):
@@ -8,14 +8,12 @@ class FlatFuckFridayCog(commands.Cog, name="Flat Fuck Friday Cog"):
     @commands.hybrid_command(name = "fff",description = "its Flat Fuck Friday")
     async def flatFuckFriday(self, ctx):
         print("Flat Fuck Friday command called")
-        file = discord.File(f"./gator/FFF.mp4")
-        await ctx.send(file=file)
+        await send_fixed_media(ctx, "fff", "./gator/FFF.mp4")
 
     @commands.hybrid_command(name = "ffc",description = "its Flat Fuck Christmas")
     async def flatFuckChristmas(self, ctx):
         print("Flat Fuck Christmas command called")
-        file = discord.File(f"./gator/flat_fuck_christmas.mov")
-        await ctx.send(file=file)
+        await send_fixed_media(ctx, "ffc", "./gator/flat_fuck_christmas.mov")
 
 
 async def setup(bot:commands.Bot):

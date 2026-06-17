@@ -1,11 +1,6 @@
-import discord
 from discord.ext import commands
 import random
-from os import listdir
-from os.path import isfile, join
-
-onlyfiles = [f for f in listdir("./borzoi") if isfile(join("./borzoi", f))]
-borzoiImagesList = onlyfiles
+from Cogs.media import send_random_media
 
 class postBorzoiCog(commands.Cog, name="Borzoi cog"):
     def __init__(self, bot:commands.Bot):
@@ -13,17 +8,13 @@ class postBorzoiCog(commands.Cog, name="Borzoi cog"):
 
     @commands.hybrid_command(name = "borzoi", aliases = ["long","snoopa","longboi","anteater","idoitforyou","nose","skinwalker","schnozer"], description = "borzoi skinwalkers")
     async def borzoi(self, ctx):
-        imageNumber = random.randint(0, len(borzoiImagesList))
         BorzoiEvent = random.randint(0,200)
         if (BorzoiEvent == 69):
             i = 0
             while i <= 10:
-                borzoiEventBorzoi = random.randint(0,len(borzoiImagesList))
-                file = discord.File(f"./borzoi/{borzoiImagesList[borzoiEventBorzoi]}")
-                await ctx.send(file=file)
+                await send_random_media(ctx, "borzoi", "./borzoi")
                 i += 1
-        file = discord.File(f"./borzoi/{borzoiImagesList[imageNumber]}")
-        await ctx.send(file=file)
+        await send_random_media(ctx, "borzoi", "./borzoi")
 
 
 async def setup(bot:commands.Bot):

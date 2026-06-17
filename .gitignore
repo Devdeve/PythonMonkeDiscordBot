@@ -1,3 +1,5 @@
 MonkeEnvironment
 __pycache__
 configuration.json
+.railway-deploy-*
+.wrangler/

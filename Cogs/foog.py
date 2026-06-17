@@ -1,5 +1,5 @@
-import discord
 from discord.ext import commands
+from Cogs.media import send_fixed_media
 
 class postFoogCog(commands.Cog, name="Foog cog"):
     def __init__(self, bot:commands.Bot):
@@ -7,8 +7,7 @@ class postFoogCog(commands.Cog, name="Foog cog"):
 
     @commands.hybrid_command(name = "foog", aliases = ["2st"], description = "lord foog the 2st")
     async def foog(self, ctx):
-        file = discord.File(f"./foog/foog.mp4")
-        await ctx.send(file=file)
+        await send_fixed_media(ctx, "foog", "./foog/foog.mp4")
 
 async def setup(bot:commands.Bot):
     await bot.add_cog(postFoogCog(bot))

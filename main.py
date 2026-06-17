@@ -4,12 +4,22 @@ from discord.ext import commands
 import json
 import os
 
-# Get configuration.json
-with open("configuration.json", "r") as config: 
-	data = json.load(config)
-	token = data["token"]
-	prefix = data["prefix"]
-	owner_id = data["owner_id"]
+def get_config():
+    data = {}
+    if os.path.exists("configuration.json"):
+        with open("configuration.json", "r") as config:
+            data = json.load(config)
+
+    token = os.environ.get("DISCORD_TOKEN") or data.get("token")
+    prefix = os.environ.get("DISCORD_PREFIX") or data.get("prefix", "!")
+    owner_id = int(os.environ.get("DISCORD_OWNER_ID") or data.get("owner_id", 0))
+
+    if not token:
+        raise RuntimeError("Set DISCORD_TOKEN or add token to configuration.json")
+
+    return token, prefix, owner_id
+
+token, prefix, owner_id = get_config()
 
 # Intents
 intents = discord.Intents.default()

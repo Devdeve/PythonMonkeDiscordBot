@@ -1,5 +1,5 @@
-import discord
 from discord.ext import commands
+from Cogs.media import send_fixed_media
 
 class WednesdayCog(commands.Cog, name="Wednesday Cog"):
     def __init__(self, bot:commands.Bot):
@@ -8,8 +8,7 @@ class WednesdayCog(commands.Cog, name="Wednesday Cog"):
     @commands.hybrid_command(name = "wednesday",description = "its wednesday")
     async def wednesday(self, ctx):
         print("Wednesday command called")
-        file = discord.File(f"./days/wednesday.mp4")
-        await ctx.send(file=file)
+        await send_fixed_media(ctx, "wednesday", "./days/wednesday.mp4")
 
 
 async def setup(bot:commands.Bot):
