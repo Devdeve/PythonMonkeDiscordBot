@@ -4,12 +4,17 @@ from discord.ext import commands
 import json
 import os
 
-# Get configuration.json
-with open("configuration.json", "r") as config: 
-	data = json.load(config)
-	token = data["token"]
-	prefix = data["prefix"]
-	owner_id = data["owner_id"]
+data = {}
+if os.path.exists("configuration.json"):
+    with open("configuration.json", "r") as config:
+        data = json.load(config)
+
+token = os.environ.get("DISCORD_TOKEN") or data.get("token")
+prefix = os.environ.get("DISCORD_PREFIX") or data.get("prefix", "!")
+owner_id = int(os.environ.get("DISCORD_OWNER_ID") or data.get("owner_id", 0))
+
+if not token:
+    raise RuntimeError("Set DISCORD_TOKEN or add token to configuration.json")
 
 # Intents
 intents = discord.Intents.default()
@@ -66,6 +71,13 @@ async def sync(ctx):
 async def main():
     async with client:
         await load_extensions()
-        await client.start(token)
+        while True:
+            try:
+                await client.start(token)
+                print("Discord client stopped. Retrying Discord login in 60 seconds...")
+            except Exception as e:
+                print(f"Discord login/start failed: {e!r}")
+                print("Retrying Discord login in 60 seconds...")
+            await asyncio.sleep(60)
 
 asyncio.run(main())
