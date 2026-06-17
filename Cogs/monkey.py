@@ -20,6 +20,7 @@ class postMonkeyCog(commands.Cog, name="Monke cog"):
 
     @commands.hybrid_command(name = "monkey",aliases = ["monki", "monke", "ape", "gorilla", "monkei", "chimp", "bonobo", "monkee", "monk", "baboon", "rasmus"], description = "mmm monke")
     async def monkey(self, ctx):
+        print("Monkey command called")
         imageNumber = random.randint(0, len(monkeyImagesList))
         ChimpEvent = random.randint(0,200)
         if (ChimpEvent == 69):

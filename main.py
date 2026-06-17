@@ -22,7 +22,7 @@ client = bot
 # cogs
 @client.event
 async def on_ready():
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="a movie"))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="monkeys"))
     print('Logged in as {0.user}'.format(client))    # Lets you know when the bot is online
     try:
         synced = await client.tree.sync()
@@ -50,6 +50,7 @@ async def reload(ctx:commands.Context, extension: str):
 
 async def load_extensions():
     for filename in os.listdir("./Cogs"):
+        print(f"loading cog {filename}")
         if filename.endswith(".py"):
             await client.load_extension(f"Cogs.{filename[:-3]}")
 
