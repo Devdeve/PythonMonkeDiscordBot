@@ -1,5 +1,5 @@
-import discord
 from discord.ext import commands
+from media import send_fixed_media
 
 # generic emotes used
 FlinkerMirror = "<:FlinkerMirror:625448790932979725>"
@@ -19,8 +19,7 @@ class FridayCog(commands.Cog, name="Friday In Cali Cog"):
     @commands.hybrid_command(name = "cali",description = "its Friday")
     async def cali(self, ctx):
         print("Cali command called")
-        file = discord.File(f"./days/Today_is_Friday_in_California.mp4")
-        await ctx.send(file=file)
+        await send_fixed_media(ctx, "friday_cali", "./days/Today_is_Friday_in_California.mp4")
 
 
 async def setup(bot:commands.Bot):

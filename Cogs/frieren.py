@@ -1,5 +1,5 @@
-import discord
 from discord.ext import commands
+from media import send_fixed_media
 
 class FrierenCog(commands.Cog, name="Frieren Cog"):
     def __init__(self, bot:commands.Bot):
@@ -8,9 +8,8 @@ class FrierenCog(commands.Cog, name="Frieren Cog"):
     @commands.hybrid_command(name = "frieren", description = "its Frieren Friday")
     async def frierenFriday(self, ctx):
         print("Frieren Friday Command")
-        file = discord.File(f"./days/Frieren.png")
         await ctx.send("It's Frieren Friday")
-        await ctx.send(file=file)
+        await send_fixed_media(ctx, "frieren", "./days/frieren.png")
 
 
 async def setup(bot:commands.Bot):
