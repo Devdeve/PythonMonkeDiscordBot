@@ -18,6 +18,7 @@ class postMonkeyCog(commands.Cog, name="Monke cog"):
         print("Monkey command called")
         ChimpEvent = random.randint(0,200)
         if (ChimpEvent == 69):
+            print("Chimp event rolled succesfully")
             await ctx.send(f"{monkePog} {monkePog} {monkePog} {monkePog} {monkePog} RANDOM CHIMP EVENT {monkePog} {monkePog} {monkePog} {monkePog} {monkePog}")
             i = 0
             while i <= 10:
